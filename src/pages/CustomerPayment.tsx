@@ -202,6 +202,65 @@ export default function CustomerPayment() {
                       </button>
                     ))}
                   </div>
+
+                  {/* PayNow QR */}
+                  {paymentMethod === 'paynow' && (
+                    <div className="text-center bg-gray-50 rounded-xl p-5 border border-gray-200">
+                      <p className="text-sm font-medium text-gray-700 mb-3">Scan QR to Pay</p>
+                      <div className="bg-white inline-block rounded-xl p-3 shadow-sm mb-3">
+                        <img
+                          src={`https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=HAWKERGO-PAYNOW-${total.toFixed(2)}-${Date.now()}`}
+                          alt="PayNow QR"
+                          className="w-[180px] h-[180px]"
+                        />
+                      </div>
+                      <p className="text-xs text-gray-500">HawkerGo PayNow</p>
+                      <p className="text-sm font-bold text-gray-800 mt-1">${total.toFixed(2)}</p>
+                      <p className="text-[10px] text-gray-400 mt-1">UEN: 2024HAWKERGO</p>
+                    </div>
+                  )}
+
+                  {/* Card Payment Fields */}
+                  {paymentMethod === 'card' && (
+                    <div className="space-y-3 bg-gray-50 rounded-xl p-4 border border-gray-200">
+                      <div>
+                        <label className="text-xs text-gray-500 mb-1 block">Card Number</label>
+                        <input
+                          type="text"
+                          placeholder="4242 4242 4242 4242"
+                          className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-orange-500 outline-none"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 gap-3">
+                        <div>
+                          <label className="text-xs text-gray-500 mb-1 block">Expiry</label>
+                          <input
+                            type="text"
+                            placeholder="MM/YY"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-orange-500 outline-none"
+                          />
+                        </div>
+                        <div>
+                          <label className="text-xs text-gray-500 mb-1 block">CVV</label>
+                          <input
+                            type="text"
+                            placeholder="123"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-orange-500 outline-none"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Cash Info */}
+                  {paymentMethod === 'cash' && (
+                    <div className="bg-blue-50 rounded-xl p-4 border border-blue-200 text-center">
+                      <p className="text-2xl mb-2">💵</p>
+                      <p className="text-sm font-medium text-blue-800">Pay at the Stall</p>
+                      <p className="text-xs text-blue-600 mt-1">Show your order # to the hawker and pay in cash</p>
+                    </div>
+                  )}
+
                   <button
                     onClick={() => setPaid(true)}
                     className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3 rounded-lg transition mt-2"

@@ -9,14 +9,14 @@ interface NavTab {
   description: string;
 }
 
-const ownerTabs: NavTab[] = [
+const allOwnerTabs: NavTab[] = [
   { label: 'Dashboard', icon: '📊', path: '/owner/dashboard', description: 'Today\'s earnings, charts & menu popularity' },
   { label: 'Incoming Orders', icon: '📥', path: '/owner/orders', description: 'Accept or decline customer orders' },
   { label: 'Menu Editor', icon: '📋', path: '/owner/menu', description: 'Add, edit or remove menu items' },
   { label: 'My Stall Info', icon: '🏪', path: '/owner/stall', description: 'Update stall details & operating hours' },
 ];
 
-const customerTabs: NavTab[] = [
+const allCustomerTabs: NavTab[] = [
   { label: 'Browse Centres', icon: '🔍', path: '/customer', description: 'See all hawker centres with live queues' },
   { label: 'My Cart', icon: '🛒', path: '/customer/cart', description: 'View and pay for your orders' },
 ];
@@ -35,7 +35,7 @@ export default function Layout() {
 
   const isActive = (path: string) => location.pathname === path || location.pathname.startsWith(path + '/');
 
-  const tabs = user?.role === 'owner' ? ownerTabs : customerTabs;
+  const tabs = user?.role === 'owner' ? allOwnerTabs : allCustomerTabs;
 
   return (
     <div className="min-h-screen bg-gray-50 pb-16 md:pb-0">
@@ -161,10 +161,14 @@ export default function Layout() {
 
             <div className="p-3">
               <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2 mt-2">
-                {user?.role === 'owner' ? 'Owner Panel' : 'Customer Panel'}
+                App Overview
               </p>
 
-              {tabs.map((tab) => (
+              {/* Owner Section */}
+              <p className="text-[10px] font-semibold text-orange-400 uppercase tracking-wider px-3 mb-2 mt-4">
+                🏪 Owner Panel
+              </p>
+              {allOwnerTabs.map((tab) => (
                 <Link
                   key={tab.path}
                   to={tab.path}
@@ -184,6 +188,34 @@ export default function Layout() {
                   </div>
                   {isActive(tab.path) && (
                     <span className="text-orange-600 text-sm">●</span>
+                  )}
+                </Link>
+              ))}
+
+              {/* Customer Section */}
+              <p className="text-[10px] font-semibold text-blue-400 uppercase tracking-wider px-3 mb-2 mt-4">
+                👤 Customer Panel
+              </p>
+              {allCustomerTabs.map((tab) => (
+                <Link
+                  key={tab.path}
+                  to={tab.path}
+                  onClick={() => setDrawerOpen(false)}
+                  className={`flex items-start gap-3 px-3 py-3 rounded-xl mb-1 transition ${
+                    isActive(tab.path)
+                      ? 'bg-blue-50 border border-blue-200'
+                      : 'hover:bg-gray-50 border border-transparent'
+                  }`}
+                >
+                  <span className="text-2xl mt-0.5">{tab.icon}</span>
+                  <div className="flex-1 min-w-0">
+                    <p className={`font-medium text-sm ${isActive(tab.path) ? 'text-blue-600' : 'text-gray-800'}`}>
+                      {tab.label}
+                    </p>
+                    <p className="text-xs text-gray-400 mt-0.5">{tab.description}</p>
+                  </div>
+                  {isActive(tab.path) && (
+                    <span className="text-blue-600 text-sm">●</span>
                   )}
                 </Link>
               ))}
