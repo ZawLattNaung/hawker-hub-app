@@ -75,29 +75,29 @@ export default function CustomerHome() {
       </div>
 
       {/* Search & Filter */}
-      <div className="flex flex-col sm:flex-row gap-4 mb-8">
-        <div className="flex-1 relative">
+      <div className="flex flex-col gap-3 mb-8">
+        <div className="relative">
           <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">🔍</span>
           <input
             type="text"
             placeholder="Search hawker centres..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none"
+            className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none text-base"
           />
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 overflow-x-auto pb-1">
           {(['all', 'low', 'medium', 'high'] as const).map((level) => (
             <button
               key={level}
               onClick={() => setCrowdFilter(level)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
+              className={`shrink-0 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-medium transition ${
                 crowdFilter === level
                   ? 'bg-orange-600 text-white'
                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
               }`}
             >
-              {level === 'all' ? 'All' : crowdConfig[level].label}
+              {level === 'all' ? 'All' : level === 'low' ? '🟢 Low' : level === 'medium' ? '🟡 Mid' : '🔴 High'}
             </button>
           ))}
         </div>

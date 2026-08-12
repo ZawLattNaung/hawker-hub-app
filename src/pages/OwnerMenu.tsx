@@ -102,56 +102,58 @@ export default function OwnerMenu() {
 
       {/* Menu List */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-        <table className="w-full">
-          <thead>
-            <tr className="bg-gray-50 text-left text-sm text-gray-500">
-              <th className="px-6 py-3 font-medium">Item</th>
-              <th className="px-6 py-3 font-medium">Category</th>
-              <th className="px-6 py-3 font-medium">Price</th>
-              <th className="px-6 py-3 font-medium">Orders</th>
-              <th className="px-6 py-3 font-medium">Actions</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-100">
-            {menu.map((item) => (
-              <tr key={item.id} className="hover:bg-gray-50 transition">
-                <td className="px-6 py-4">
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl">{item.image}</span>
-                    <span className="font-medium text-gray-800">{item.name}</span>
-                  </div>
-                </td>
-                <td className="px-6 py-4">
-                  <span className="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded-full">
-                    {item.category}
-                  </span>
-                </td>
-                <td className="px-6 py-4 font-medium text-gray-800">${item.price.toFixed(2)}</td>
-                <td className="px-6 py-4">
-                  <span className={`text-sm font-medium ${item.orderCount > 150 ? 'text-green-600' : 'text-gray-500'}`}>
-                    {item.orderCount}
-                  </span>
-                </td>
-                <td className="px-6 py-4">
-                  <div className="flex gap-2">
-                    <button
-                      onClick={() => openEdit(item)}
-                      className="text-blue-600 hover:text-blue-800 text-sm font-medium"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      onClick={() => deleteItem(item.id)}
-                      className="text-red-500 hover:text-red-700 text-sm font-medium"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </td>
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[600px]">
+            <thead>
+              <tr className="bg-gray-50 text-left text-sm text-gray-500">
+                <th className="px-4 sm:px-6 py-3 font-medium">Item</th>
+                <th className="px-4 sm:px-6 py-3 font-medium">Category</th>
+                <th className="px-4 sm:px-6 py-3 font-medium">Price</th>
+                <th className="px-4 sm:px-6 py-3 font-medium">Orders</th>
+                <th className="px-4 sm:px-6 py-3 font-medium">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {menu.map((item) => (
+                <tr key={item.id} className="hover:bg-gray-50 transition">
+                  <td className="px-4 sm:px-6 py-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-xl sm:text-2xl">{item.image}</span>
+                      <span className="font-medium text-gray-800 text-sm sm:text-base">{item.name}</span>
+                    </div>
+                  </td>
+                  <td className="px-4 sm:px-6 py-4">
+                    <span className="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded-full whitespace-nowrap">
+                      {item.category}
+                    </span>
+                  </td>
+                  <td className="px-4 sm:px-6 py-4 font-medium text-gray-800 text-sm sm:text-base">${item.price.toFixed(2)}</td>
+                  <td className="px-4 sm:px-6 py-4">
+                    <span className={`text-sm font-medium ${item.orderCount > 150 ? 'text-green-600' : 'text-gray-500'}`}>
+                      {item.orderCount}
+                    </span>
+                  </td>
+                  <td className="px-4 sm:px-6 py-4">
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => openEdit(item)}
+                        className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => deleteItem(item.id)}
+                        className="text-red-500 hover:text-red-700 text-sm font-medium"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

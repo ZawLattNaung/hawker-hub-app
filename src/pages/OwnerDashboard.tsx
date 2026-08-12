@@ -67,7 +67,7 @@ export default function OwnerDashboard() {
               <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12 }} />
               <Tooltip
                 contentStyle={{ borderRadius: 8, border: '1px solid #e5e7eb' }}
-                formatter={(v: number) => [`$${v}`, '']}
+                formatter={(v) => [`$${v}`, '']}
               />
               <Bar dataKey="cash" fill="#f97316" name="Cash" radius={[4, 4, 0, 0]} />
               <Bar dataKey="banking" fill="#8b5cf6" name="Banking" radius={[4, 4, 0, 0]} />
@@ -95,7 +95,7 @@ export default function OwnerDashboard() {
               <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12 }} />
               <Tooltip
                 contentStyle={{ borderRadius: 8, border: '1px solid #e5e7eb' }}
-                formatter={(v: number) => [`$${v}`, '']}
+                formatter={(v) => [`$${v}`, '']}
               />
               <Line
                 type="monotone"

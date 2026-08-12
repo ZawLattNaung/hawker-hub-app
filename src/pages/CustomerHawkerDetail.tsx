@@ -32,21 +32,21 @@ export default function CustomerHawkerDetail() {
       </Link>
 
       {/* Hero */}
-      <div className="relative rounded-2xl overflow-hidden h-64 mb-8">
+      <div className="relative rounded-2xl overflow-hidden h-48 sm:h-64 mb-6">
         <div
           className="w-full h-full bg-cover bg-center"
           style={{ backgroundImage: `url(${center.image})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 p-6">
-          <h1 className="text-3xl font-bold text-white mb-1">{center.name}</h1>
-          <p className="text-white/80">{center.address}</p>
+        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
+          <h1 className="text-xl sm:text-3xl font-bold text-white mb-1">{center.name}</h1>
+          <p className="text-white/80 text-sm sm:text-base">{center.address}</p>
         </div>
       </div>
 
       {/* Crowd Status Banner */}
-      <div className={`${cfg.bg} rounded-xl p-6 mb-8`}>
-        <div className="flex items-center justify-between">
+      <div className={`${cfg.bg} rounded-xl p-4 sm:p-6 mb-6`}>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div>
             <p className={`text-lg font-bold ${cfg.color}`}>{cfg.label}</p>
             <p className="text-sm text-gray-600 mt-1">
@@ -57,7 +57,7 @@ export default function CustomerHawkerDetail() {
                 : 'Queues are short. Get your food fast!'}
             </p>
           </div>
-          <div className="text-center">
+          <div className="text-center sm:text-right">
             <p className="text-3xl font-bold text-gray-800">{totalQueue}</p>
             <p className="text-sm text-gray-500">total in queue</p>
           </div>
