@@ -78,4 +78,6 @@ export interface User {
   name: string;
   role: 'owner' | 'customer';
   stallId?: string;
+  partnerCompany?: string;
+  priorityQueue?: boolean;
 }

@@ -20,7 +20,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const loginAs = (role: 'owner' | 'customer') => {
     const u: User = role === 'owner'
       ? { id: 'u1', email: 'owner@hawker.com', password: '', name: 'Ah Gong', role, stallId: 's1' }
-      : { id: 'u2', email: 'customer@test.com', password: '', name: 'Jane Tan', role };
+      : { id: 'u2', email: 'customer@test.com', password: '', name: 'Jane Tan', role, partnerCompany: 'Shopee Singapore', priorityQueue: true };
     setUser(u);
     localStorage.setItem('hawker_user', JSON.stringify(u));
   };

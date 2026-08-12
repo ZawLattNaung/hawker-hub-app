@@ -19,6 +19,7 @@ const allOwnerTabs: NavTab[] = [
 const allCustomerTabs: NavTab[] = [
   { label: 'Browse Centres', icon: '🔍', path: '/customer', description: 'See all hawker centres with live queues' },
   { label: 'My Cart', icon: '🛒', path: '/customer/cart', description: 'View and pay for your orders' },
+  { label: 'Profile', icon: '👤', path: '/customer/profile', description: 'Partner benefits & priority queue' },
 ];
 
 export default function Layout() {

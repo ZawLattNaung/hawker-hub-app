@@ -10,6 +10,7 @@ import OwnerStallInfo from './pages/OwnerStallInfo';
 import CustomerHome from './pages/CustomerHome';
 import CustomerHawkerDetail from './pages/CustomerHawkerDetail';
 import CustomerPayment from './pages/CustomerPayment';
+import CustomerProfile from './pages/CustomerProfile';
 
 function ProtectedRoute({ children, role }: { children: React.ReactNode; role: 'owner' | 'customer' }) {
   const { user } = useAuth();
@@ -33,6 +34,7 @@ function AppRoutes() {
         <Route path="/owner/stall" element={<ProtectedRoute role="owner"><OwnerStallInfo /></ProtectedRoute>} />
         <Route path="/customer" element={<ProtectedRoute role="customer"><CustomerHome /></ProtectedRoute>} />
         <Route path="/customer/cart" element={<ProtectedRoute role="customer"><CustomerPayment /></ProtectedRoute>} />
+        <Route path="/customer/profile" element={<ProtectedRoute role="customer"><CustomerProfile /></ProtectedRoute>} />
         <Route path="/customer/:id" element={<ProtectedRoute role="customer"><CustomerHawkerDetail /></ProtectedRoute>} />
       </Route>
 
