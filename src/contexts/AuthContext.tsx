@@ -3,6 +3,7 @@ import type { User } from '../types';
 
 interface AuthContextType {
   user: User | null;
+  loginAs: (role: 'owner' | 'customer') => void;
   login: (email: string, password: string, role: 'owner' | 'customer') => boolean;
   signup: (name: string, email: string, password: string, role: 'owner' | 'customer') => void;
   logout: () => void;
@@ -15,6 +16,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const saved = localStorage.getItem('hawker_user');
     return saved ? JSON.parse(saved) : null;
   });
+
+  const loginAs = (role: 'owner' | 'customer') => {
+    const u: User = role === 'owner'
+      ? { id: 'u1', email: 'owner@hawker.com', password: '', name: 'Ah Gong', role, stallId: 's1' }
+      : { id: 'u2', email: 'customer@test.com', password: '', name: 'Jane Tan', role };
+    setUser(u);
+    localStorage.setItem('hawker_user', JSON.stringify(u));
+  };
 
   const login = (email: string, password: string, role: 'owner' | 'customer') => {
     if (role === 'owner') {
@@ -54,7 +63,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, signup, logout }}>
+    <AuthContext.Provider value={{ user, loginAs, login, signup, logout }}>
       {children}
     </AuthContext.Provider>
   );
