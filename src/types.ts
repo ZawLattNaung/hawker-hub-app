@@ -19,6 +19,19 @@ export interface Stall {
   description: string;
 }
 
+export interface StallInCenter {
+  id: string;
+  name: string;
+  unitNumber: string;
+  cuisine: string;
+  image: string;
+  dineInQueue: number;
+  takeawayQueue: number;
+  rating: number;
+  isOpen: boolean;
+  menu: MenuItem[];
+}
+
 export interface HawkerCenter {
   id: string;
   name: string;
@@ -30,6 +43,7 @@ export interface HawkerCenter {
   totalStalls: number;
   lat: number;
   lng: number;
+  stalls: StallInCenter[];
 }
 
 export interface DailyEarning {
@@ -37,6 +51,24 @@ export interface DailyEarning {
   cash: number;
   banking: number;
   total: number;
+}
+
+export interface IncomingOrder {
+  id: string;
+  customerName: string;
+  items: { name: string; qty: number; price: number }[];
+  total: number;
+  type: 'dine-in' | 'takeaway';
+  status: 'pending' | 'accepted' | 'declined' | 'sold-out' | 'completed';
+  timestamp: string;
+  tableNumber?: string;
+}
+
+export interface CartItem {
+  menuItem: MenuItem;
+  qty: number;
+  stallName: string;
+  stallId: string;
 }
 
 export interface User {
